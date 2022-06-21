@@ -53,5 +53,4 @@ jobs:
         with:
           app-name: 'daniellapi'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_1234 }}
-          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_13FFEF300D1F4ACEA36206C1603CE682 }}
