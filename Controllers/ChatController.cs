@@ -19,6 +19,13 @@ public class ChatController : ControllerBase
         return "This is HttpGet Method";
     }
 
+    [HttpPost]
+    [Route("post")]
+    public object Post(Practice request)
+    {
+        return request;
+    }
+
     [HttpGet]
     [Route("list")]
     public Dictionary<string, object> List()
@@ -79,11 +86,11 @@ public class ChatController : ControllerBase
 
     [HttpPost]
     [Route("delete")]
-    public Dictionary<string, string> Delete(int id)
+    public Dictionary<string, string> Delete(Test request)
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
-        string sqlStr = $"DELETE FROM [dbo].[Test] WHERE id = {id}";
+        string sqlStr = $"DELETE FROM [dbo].[Test] WHERE id = {request.id}";
         SqlCommand command = new SqlCommand(sqlStr);
         command.Connection = sql;
         sql.Open();
