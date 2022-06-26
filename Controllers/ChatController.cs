@@ -86,7 +86,7 @@ public class ChatController : ControllerBase
 
     [HttpPost]
     [Route("delete")]
-    public Dictionary<string, string> Delete(Test request)
+    public Dictionary<string, string> Delete(Practice request)
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
