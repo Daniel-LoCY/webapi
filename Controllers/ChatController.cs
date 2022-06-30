@@ -31,7 +31,7 @@ public class ChatController : ControllerBase
     public Dictionary<string, object> List()
     {
         SqlConnection sql = new SqlConnection(Connstr);
-        SqlCommand command = new SqlCommand("SELECT * FROM [dbo].[Test];");
+        SqlCommand command = new SqlCommand("SELECT * FROM Test");
         command.Connection = sql;
         sql.Open();
         SqlDataReader reader = command.ExecuteReader();
@@ -59,7 +59,7 @@ public class ChatController : ControllerBase
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
-        string sqlStr = $"INSERT INTO [dbo].[Test] VALUES (N'{request.name}');";
+        string sqlStr = $"INSERT INTO Test VALUES (N'{request.name}')";
         SqlCommand command = new SqlCommand(sqlStr);
         command.Connection = sql;
         sql.Open();
@@ -90,7 +90,7 @@ public class ChatController : ControllerBase
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
-        string sqlStr = $"DELETE FROM [dbo].[Test] WHERE id = {request.id}";
+        string sqlStr = $"DELETE FROM Test WHERE id = {request.id}";
         SqlCommand command = new SqlCommand(sqlStr);
         command.Connection = sql;
         sql.Open();
@@ -119,7 +119,7 @@ public class ChatController : ControllerBase
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
-        string sqlStr = $"UPDATE [dbo].[Test] SET name=N'{request.name}' WHERE id = ${request.id}";
+        string sqlStr = $"UPDATE Test SET name=N'{request.name}' WHERE id = ${request.id}";
         SqlCommand command = new SqlCommand(sqlStr);
         command.Connection = sql;
         sql.Open();
