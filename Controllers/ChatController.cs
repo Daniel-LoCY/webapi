@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using webapi.Model;
 using System.Data.SqlClient;
 
@@ -31,7 +29,7 @@ public class ChatController : ControllerBase
     public Dictionary<string, object> List()
     {
         SqlConnection sql = new SqlConnection(Connstr);
-        SqlCommand command = new SqlCommand("SELECT * FROM Test");
+        SqlCommand command = new SqlCommand("SELECT * FROM Practice");
         command.Connection = sql;
         sql.Open();
         SqlDataReader reader = command.ExecuteReader();
@@ -43,7 +41,7 @@ public class ChatController : ControllerBase
                 response.Add(new Test()
                 {
                     id = reader.GetInt32(reader.GetOrdinal("id")),
-                    name = reader.GetString(reader.GetOrdinal("name"))
+                    content = reader.GetString(reader.GetOrdinal("content"))
                 });
             }
         }
@@ -54,12 +52,12 @@ public class ChatController : ControllerBase
     }
     
     [HttpPost]
-    [Route("New")]
+    [Route("new")]
     public Dictionary<string, string> New(Test request)
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
-        string sqlStr = $"INSERT INTO Test VALUES (N'{request.name}')";
+        string sqlStr = $"INSERT INTO Practice VALUES (N'{request.content}')";
         SqlCommand command = new SqlCommand(sqlStr);
         command.Connection = sql;
         sql.Open();
@@ -90,7 +88,7 @@ public class ChatController : ControllerBase
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
-        string sqlStr = $"DELETE FROM Test WHERE id = {request.id}";
+        string sqlStr = $"DELETE FROM Practice WHERE id = {request.id}";
         SqlCommand command = new SqlCommand(sqlStr);
         command.Connection = sql;
         sql.Open();
@@ -119,7 +117,7 @@ public class ChatController : ControllerBase
     {
         var obj = new Dictionary<string, string>();
         var sql = new SqlConnection(Connstr);
-        string sqlStr = $"UPDATE Test SET name=N'{request.name}' WHERE id = ${request.id}";
+        string sqlStr = $"UPDATE Practice SET content=N'{request.content}' WHERE id = ${request.id}";
         SqlCommand command = new SqlCommand(sqlStr);
         command.Connection = sql;
         sql.Open();
